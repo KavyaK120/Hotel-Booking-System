@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Confirmation</title>
+
+    <link rel="stylesheet" href="../css/booking.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <h2>🏨 Hotel Booking</h2>
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="hotels.html">Hotels</a>
+            </li>
+
+            <li>
+                <a href="my-bookings.html">My Bookings</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<section class="booking-container">
+
+    <h1>Booking Summary</h1>
+
+    <div class="booking-card">
+
+        <p>
+            <strong>Hotel :</strong>
+            <span id="hotelName"></span>
+        </p>
+
+        <p>
+            <strong>Room :</strong>
+            <span id="roomType"></span>
+        </p>
+
+        <p>
+            <strong>Check In :</strong>
+            <span id="checkIn"></span>
+        </p>
+
+        <p>
+            <strong>Check Out :</strong>
+            <span id="checkOut"></span>
+        </p>
+
+        <p>
+            <strong>Guests :</strong>
+            <span id="guests"></span>
+        </p>
+
+        <p>
+            <strong>Price Per Night :</strong>
+            ₹<span id="price"></span>
+        </p>
+
+        <p>
+            <strong>Number of Nights :</strong>
+            <span id="nights"></span>
+        </p>
+
+        <p>
+            <strong>Total Amount :</strong>
+            ₹<span id="totalAmount"></span>
+        </p>
+      <button id="confirmBtn">Confirm Booking</button>
+      <button id="cancelBtn">Cancel Booking</button>
+</div>
+
+    </div>
+
+</section>
+
+
+<script>
+    const bookingData = JSON.parse(localStorage.getItem("booking"));
+
+    if (!bookingData) {
+        alert("No booking details found!");
+        window.location.href = "hotels.html";
+    }
+
+    // CONFIRM BOOKING
+    document.getElementById("confirmBtn").addEventListener("click", async function () {
+
+        try {
+            const response = await fetch("http://localhost:8082/api/bookings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    hotelId: bookingData.hotelId,
+                    userId: bookingData.userId,
+                    checkInDate: bookingData.checkInDate,
+                    checkOutDate: bookingData.checkOutDate,
+                    numberOfGuests: bookingData.numberOfGuests,
+                    totalAmount: bookingData.totalAmount,
+                    bookingStatus: "CONFIRMED"
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error("Booking failed");
+            }
+
+            const savedBooking = await response.json();
+
+            // Store booking ID for cancellation
+            localStorage.setItem("confirmedBookingId", savedBooking.bookingId);
+
+            alert("Booking confirmed successfully!");
+
+            localStorage.removeItem("booking");
+
+            window.location.href = "my-bookings.html";
+
+        } catch (error) {
+            console.error(error);
+            alert("Failed to confirm booking. Please check the backend.");
+        }
+    });
+
+
+    // CANCEL BOOKING
+    document.getElementById("cancelBtn").addEventListener("click", async function () {
+
+        const bookingId = localStorage.getItem("confirmedBookingId");
+
+        // If booking hasn't been saved yet
+        if (!bookingId) {
+            localStorage.removeItem("booking");
+
+            alert("Booking cancelled.");
+
+            window.location.href = "hotels.html";
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `http://localhost:8082/api/bookings/${bookingId}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Cancellation failed");
+            }
+
+            alert("Booking cancelled successfully!");
+
+            localStorage.removeItem("booking");
+            localStorage.removeItem("confirmedBookingId");
+
+            window.location.href = "hotels.html";
+
+        } catch (error) {
+            console.error(error);
+            alert("Failed to cancel booking.");
+        }
+    });
+</script>
+</body>
+
+</html>

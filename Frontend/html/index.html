@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hotel Booking System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+    <div class="logo">
+        🏨 Hotel Booking
+    </div>
+
+    <ul class="nav-links">
+
+    <li>
+    <a href="index.html" class="active">Home</a>
+     </li>
+
+     <li>
+    <a href="hotels.html">Hotels</a>
+     </li>
+
+    <li>
+        <a href="my-bookings.html">My Bookings</a>
+    </li>
+
+    <li>
+        <a href="profile.html" id="loggedUserName">
+            👤 Profile
+        </a>
+    </li>
+
+    <li>
+        <a href="#" onclick="logout()">Logout</a>
+    </li>
+
+</ul>
+
+</nav>
+  
+
+</header>
+
+
+<section class="search-bar">
+
+    <form id="searchForm">
+
+        <input type="text" placeholder="📍 Destination">
+
+        <input type="date">
+
+        <input type="date">
+
+        <button>Search</button>
+
+    </form>
+
+</section>
+
+
+<section class="banner">
+
+    <div class="banner-overlay">
+
+        <h1>FIND YOUR PERFECT STAY</h1>
+
+        <p>
+            Luxury Hotels • Best Prices • Instant Booking
+        </p>
+
+        <a href="login.html" class="banner-btn">
+            Login to Book
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="services">
+
+    <h2>Why Choose Us?</h2>
+
+    <div class="service-container">
+
+        <div class="service-box">
+
+            <h3>💰 Best Price</h3>
+
+            <p>Affordable hotel booking with exciting offers.</p>
+
+        </div>
+
+        <div class="service-box">
+
+            <h3>⭐ Verified Hotels</h3>
+
+            <p>Trusted hotels with genuine customer ratings.</p>
+
+        </div>
+
+        <div class="service-box">
+
+            <h3>🔒 Secure Booking</h3>
+
+            <p>Safe online payment with instant confirmation.</p>
+
+        </div>
+
+        <div class="service-box">
+
+            <h3>📞 24/7 Support</h3>
+
+            <p>Customer support available anytime.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 Hotel Booking System | All Rights Reserved.
+
+</footer>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const user =
+        JSON.parse(localStorage.getItem("user"));
+
+    const userName =
+        document.getElementById("loggedUserName");
+
+    if (user && userName) {
+
+        userName.textContent =
+            "👤 " + user.name;
+
+    }
+
+});
+
+
+function logout() {
+
+    localStorage.removeItem("user");
+
+    localStorage.removeItem("userId");
+
+    localStorage.removeItem("booking");
+
+    window.location.href = "login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

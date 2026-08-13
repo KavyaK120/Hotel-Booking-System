@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Hotel Booking System</title>
+
+    <link rel="stylesheet" href="../css/booking.css">
+
+    <style>
+
+        .profile-container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .profile-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-item strong {
+            color: #0d6efd;
+        }
+
+        .logout-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        🏨 Hotel Booking
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="hotels.html">Hotels</a>
+        </li>
+
+        <li>
+            <a href="my-bookings.html">My Bookings</a>
+        </li>
+
+        <li>
+            <a href="profile.html">Profile</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<div class="profile-container">
+
+    <h2>👤 My Profile</h2>
+
+    <div class="profile-item">
+        <strong>User ID</strong>
+        <span id="userId"></span>
+    </div>
+
+    <div class="profile-item">
+        <strong>Name</strong>
+        <span id="userName"></span>
+    </div>
+
+    <div class="profile-item">
+        <strong>Email</strong>
+        <span id="userEmail"></span>
+    </div>
+
+    <div class="profile-item">
+        <strong>Phone</strong>
+        <span id="userPhone"></span>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+</div>
+
+
+<script>
+
+const user =
+    JSON.parse(localStorage.getItem("user"));
+
+
+if (!user) {
+
+    alert("Please login first.");
+
+    window.location.href = "login.html";
+
+}
+
+
+document.getElementById("userId").textContent =
+    user.id;
+
+document.getElementById("userName").textContent =
+    user.name;
+
+document.getElementById("userEmail").textContent =
+    user.email;
+
+document.getElementById("userPhone").textContent =
+    user.phone;
+
+
+function logout() {
+
+    localStorage.removeItem("user");
+
+    localStorage.removeItem("userId");
+
+    localStorage.removeItem("booking");
+
+    window.location.href = "login.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
