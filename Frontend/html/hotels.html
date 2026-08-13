@@ -1,225 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Hotels | Hotel Booking System</title>
 
-    <link rel="stylesheet" href="../css/hotels.css">
+    <link rel="stylesheet" href="../css/hotels.css" />
+  </head>
 
-</head>
+  <body>
+    <!-- Navbar -->
 
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h2>🏨 Hotel Booking</h2>
+        </div>
 
-<body>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
 
+          <li>
+            <a href="hotels.html" class="active">Hotels</a>
+          </li>
 
-<!-- Navbar -->
+          <li>
+            <a href="my-bookings.html">My Bookings</a>
+          </li>
 
-<header>
+          <li>
+            <a href="profile.html" id="loggedUserName"> 👤 Profile </a>
+          </li>
 
-<nav class="navbar">
+          <li>
+            <a href="#" onclick="logout()">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Banner -->
 
-    <div class="logo">
-        <h2>🏨 Hotel Booking</h2>
-    </div>
+    <!-- Search -->
 
+    <section class="search-section">
+      <h2>Find Hotels</h2>
 
-    <ul class="nav-links">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by city or hotel name"
+      />
+    </section>
 
-    <li>
-        <a href="../index.html">Home</a>
-    </li>
+    <!-- Hotels -->
 
-    <li>
-        <a href="hotels.html" class="active">Hotels</a>
-    </li>
+    <section class="hotel-section">
+      <div class="hotel-container" id="hotelContainer">
+        <!-- Hotel 1 -->
 
-    <li>
-        <a href="my-bookings.html">My Bookings</a>
-    </li>
+        <div class="hotel-card">
+          <img src="../images/hotel1.png" alt="Grand Palace Hotel" />
 
-    <li>
-        <a href="profile.html" id="loggedUserName">
-            👤 Profile
-        </a>
-    </li>
+          <div class="hotel-info">
+            <h3>Grand Palace</h3>
 
-    <li>
-        <a href="#" onclick="logout()">Logout</a>
-    </li>
+            <p>📍 Hyderabad</p>
 
-</ul>
-</nav>
+            <p>⭐⭐⭐⭐⭐</p>
 
-</header>
-<!-- Banner -->
+            <p>₹4500 / Night</p>
 
+            <button onclick="location.href = 'hotel-details.html?id=1'">
+              View Details
+            </button>
+          </div>
+        </div>
 
+        <!-- Hotel 2 -->
 
+        <div class="hotel-card">
+          <img src="../images/hotel2.png" alt="Royal Residency" />
 
+          <div class="hotel-info">
+            <h3>Royal Residency</h3>
 
-<!-- Search -->
+            <p>📍 Vijayawada</p>
 
-<section class="search-section">
+            <p>⭐⭐⭐⭐☆</p>
 
-<h2>Find Hotels</h2>
+            <p>₹3500 / Night</p>
 
-<input 
-type="text"
-id="searchInput"
-placeholder="Search by city or hotel name">
+            <button onclick="location.href = 'hotel-details.html?id=2'">
+              View Details
+            </button>
+          </div>
+        </div>
 
-</section>
+        <!-- Hotel 3 -->
 
+        <div class="hotel-card">
+          <img src="../images/hotel3.png" alt="Sea View Resort" />
 
+          <div class="hotel-info">
+            <h3>Sea View Resort</h3>
 
+            <p>📍 Visakhapatnam</p>
 
+            <p>⭐⭐⭐⭐⭐</p>
 
-<!-- Hotels -->
+            <p>₹5500 / Night</p>
 
-<section class="hotel-section">
+            <button onclick="location.href = 'hotel-details.html?id=3'">
+              View Details
+            </button>
+          </div>
+        </div>
 
+        <!-- Hotel 4 -->
 
-<div class="hotel-container" id="hotelContainer">
+        <div class="hotel-card">
+          <img src="../images/hotel4.png" alt="Mountain View Resort" />
 
+          <div class="hotel-info">
+            <h3>Mountain View Resort</h3>
 
-<!-- Hotel 1 -->
+            <p>📍 Ooty</p>
 
-<div class="hotel-card" >
+            <p>⭐⭐⭐⭐⭐</p>
 
-<img src="../images/hotel1.png" alt="Grand Palace Hotel">
+            <p>₹6500 / Night</p>
 
-<div class="hotel-info">
+            <button onclick="location.href = 'hotel-details.html?id=4'">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h3>Grand Palace</h3>
+    <script src="../js/api.js"></script>
 
-<p>📍 Hyderabad</p>
-
-<p>⭐⭐⭐⭐⭐</p>
-
-<p>₹4500 / Night</p>
-
-
-<button onclick="location.href='hotel-details.html?id=1'">
-View Details
-</button>
-
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- Hotel 2 -->
-
-<div class="hotel-card">
-
-<img src="../images/hotel2.png" alt="Royal Residency">
-
-
-<div class="hotel-info">
-
-<h3>Royal Residency</h3>
-
-<p>📍 Vijayawada</p>
-
-<p>⭐⭐⭐⭐☆</p>
-
-<p>₹3500 / Night</p>
-
-
-<button onclick="location.href='hotel-details.html?id=2'">
-View Details
-</button>
-
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- Hotel 3 -->
-
-<div class="hotel-card">
-
-<img src="../images/hotel3.png" alt="Sea View Resort">
-
-
-<div class="hotel-info">
-
-<h3>Sea View Resort</h3>
-
-<p>📍 Visakhapatnam</p>
-
-<p>⭐⭐⭐⭐⭐</p>
-
-<p>₹5500 / Night</p>
-
-
-<button onclick="location.href='hotel-details.html?id=3'">
-View Details
-</button>
-
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- Hotel 4 -->
-
-<div class="hotel-card">
-
-<img src="../images/hotel4.png" alt="Mountain View Resort">
-
-
-<div class="hotel-info">
-
-<h3>Mountain View Resort</h3>
-
-<p>📍 Ooty</p>
-
-<p>⭐⭐⭐⭐⭐</p>
-
-<p>₹6500 / Night</p>
-
-
-<button onclick="location.href='hotel-details.html?id=4'">
-View Details
-</button>
-
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-
-<script src="../js/api.js"></script>
-
-<script src="../js/hotels.js"></script>
-
-
-
-</body>
-
+    <script src="../js/hotels.js"></script>
+  </body>
 </html>
